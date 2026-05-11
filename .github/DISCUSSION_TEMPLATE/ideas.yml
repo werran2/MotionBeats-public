@@ -1,0 +1,18 @@
+title: "[Idea] "
+labels:
+  - idea
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Idea
+      description: What would you like MotionBeats to support?
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it matters
+      description: What user problem would this solve?
+    validations:
+      required: true

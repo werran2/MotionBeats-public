@@ -1,0 +1,51 @@
+name: Feature request
+description: Suggest an improvement for MotionBeats
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please describe the user problem first. This helps keep feature discussions practical.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      placeholder: "When I use MotionBeats, I want to..., but currently..."
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Suggested solution
+      placeholder: "I would like MotionBeats to..."
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Product area
+      options:
+        - Motion trigger
+        - Voice pack management
+        - Cloud generation
+        - Import or export
+        - Account or login
+        - Android
+        - iOS
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: false
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional context
+    validations:
+      required: false
