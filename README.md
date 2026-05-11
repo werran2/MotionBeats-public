@@ -23,6 +23,15 @@ If there is no release yet, please watch this repository or open an issue asking
 - Cloud generation can create voice lines from built-in voices or a short reference audio sample.
 - Trigger settings can be tuned for sensitivity, cooldown, idle playback, and continuous response.
 
+## Supported Languages
+
+MotionBeats currently supports app UI and built-in content in:
+
+- English
+- 繁體中文
+- 日本語
+- 한국어
+
 ## Quick Start
 
 1. Install the latest beta build from [Releases](../../releases).
