@@ -6,18 +6,22 @@ All notable public beta changes for MotionBeats will be recorded here.
 
 [Download v5.82](https://github.com/werran2/MotionBeats-public/releases/tag/v5.82)
 
-**5.82 / build 582 · Android 9+ · ARM64 (`arm64-v8a`) · debug-signed test build**
+**5.82 / build 582 · Android 9+ · ARM64 (`arm64-v8a`) · release build · signed with the legacy v1.34 beta certificate**
 
 This is the next public Android beta after [v1.34](https://github.com/werran2/MotionBeats-public/releases/tag/v1.34). The summary below covers the cumulative changes through 5.82; intermediate development versions were not separate public GitHub releases.
 
 ## Read before installing / 安装前必读
 
-**The signing certificate has changed since the public v1.34 APK. Android will not install 5.82 over that APK.** Export your voice packs and save any other important data outside the app before considering uninstalling v1.34. Uninstalling deletes local app data, including settings and history; exported packs do not constitute a complete backup. If you need to retain data that cannot be exported, keep the old installation until you have a suitable migration path. There is no verified automatic migration across these differently signed APKs.
+**The Android attachments have been corrected to a non-debuggable release build signed with the original public v1.34 certificate.** Package ID remains `com.motionbeats.app`; build 582 is newer than v1.34/build 134. These signing/version checks establish upgrade compatibility with v1.34 without uninstalling. Back up important data before upgrading; actual on-device upgrade and data migration have not been tested in this replacement run.
 
-**5.82 与公开 v1.34 APK 的签名证书不同，无法直接覆盖安装。** 如需换装，请先导出语音包，并将其他重要数据另存到 App 外。卸载旧版会删除本地设置、历史记录等数据；导出的语音包不是完整备份。若有无法导出且需要保留的数据，请先保留旧版。本次未验证跨签名自动迁移。
+**本次已将附件更正为关闭调试的 release 构建，并使用公开 v1.34 的原签名证书。** 包名保持 `com.motionbeats.app`，版本为 5.82/582，签名与版本条件支持从 v1.34 直接覆盖升级，无需卸载旧版。升级前仍建议备份重要数据；本次未实测真机覆盖安装和数据迁移。
+
+**If you downloaded the earlier 5.82 debug APK:** that withdrawn file used a different certificate (`4d092d12…8c7b108c`) and cannot be updated in place with this corrected release. Do not uninstall it until you have exported packs and saved other important data outside the app; uninstalling removes local settings/history and exported packs are not a complete backup. Keep that installation if you need data that cannot be exported. The replacement does not provide a verified cross-signature migration.
+
+**若你已安装此前上传的 5.82 debug 包：** 该附件使用另一张证书（`4d092d12…8c7b108c`），无法用本次更正版直接覆盖。请先导出语音包，并将其他重要数据保存到 App 外；卸载会删除本地设置和历史，导出的包不是完整备份。有无法导出的重要数据时请先保留原安装。本次未提供经验证的跨签名迁移。
 
 - Download the `.apk` for installation, or the `.zip` containing the same APK. You only need one. Check `SHA256SUMS.txt` if desired.
-- 本次附件为 **ARM64 调试版测试包**，需要 Android 9 或更高版本；ZIP 内是同一个 APK，二选一即可。它不是面向生产加固的 release 构建。
+- 本次附件为 **ARM64 release 构建**，需要 Android 9 或更高版本；ZIP 内是同一个 APK，二选一即可。已启用项目现有的代码/资源压缩，关闭调试、调试日志、备份和明文流量的构建开关。为保持旧版升级兼容，继续使用原 beta/debug 证书，并未迁移到新的正式发布密钥。
 - Cloud dialogue and voice generation require a compatible account/service and network access. Local speech models require additional downloads, storage and a capable device; local speech does not make cloud AI dialogue offline.
 - 云端对话和语音生成需要相应账户、服务和网络；本地语音模型需额外下载并占用存储，对设备有要求。本地识别/合成不代表云端 AI 对话可以离线。
 
@@ -91,16 +95,17 @@ These group the intervening development versions, rather than claiming a separat
 
 ## Package verification / 附件校验
 
-Both APK signatures verify cryptographically. Their certificate SHA-256 fingerprints differ:
+The replacement APK verifies successfully and matches the original public v1.34 signing certificate. / 更正版 APK 验签通过，与公开 v1.34 签名证书一致。
 
-- Public v1.34: `d6ede4faa7edfcb3c9048cb71b69913c5826b72ab4a2ff6884835ac3cdc729b9`
-- This v5.82: `4d092d12bbcfe1afd2b52f2c312764fdf7c7838d4e8b05b1f0aec92b8c7b108c`
-
-The ZIP contains exactly the attached APK, with matching SHA-256. / ZIP 仅包含同名 APK，内外 APK 的 SHA-256 一致。
+- Certificate SHA-256: `d6ede4faa7edfcb3c9048cb71b69913c5826b72ab4a2ff6884835ac3cdc729b9`
+- APK metadata: `com.motionbeats.app`, version `5.82`, versionCode `582`, Android 9+, `arm64-v8a`; not debuggable.
+- Legacy beta/debug signing identity is retained for upgrade continuity. This is a release build, not a newly provisioned production signing identity.
+- The ZIP contains exactly the attached APK, with matching SHA-256. / ZIP 仅包含同名 APK，内外 APK 的 SHA-256 一致。
+- This corrects the packaging of the same 5.82 release; app code and version remain unchanged. / 本次仅更正同一 5.82 版本的构建与签名，产品代码和版本号不变。
 
 ```text
-cb853b76cb7849e1d3deaa9fce62ac6c196737a3e1232157dacc82b74dc39888  MotionBeats-5.82-582-android-arm64-debug.apk
-6f384c2d8d55843e1e100ae0e31f77e00e190a60cde0949e5cf10f3e9aced28e  MotionBeats-5.82-582-android-arm64-debug.zip
+688401f0d73e8d73ebea0ea23d7fe5f9dbe9f22be31bec8eaa4c8e2b7cdba6e9  MotionBeats-5.82-582-android-arm64-release.apk
+a21a4458bd6d0a0106a5de415c29a004ed6620f9eca77b8ac7d061cd7629fa30  MotionBeats-5.82-582-android-arm64-release.zip
 ```
 
 Please report issues with the app version, Android/device model, reproduction steps and an appropriately redacted diagnostic report: [GitHub Issues](https://github.com/werran2/MotionBeats-public/issues). / 反馈时请附版本、设备、复现步骤和已去除隐私信息的诊断材料。
