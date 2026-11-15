@@ -2,7 +2,47 @@
 
 All notable public beta changes for MotionBeats will be recorded here.
 
+## 5.83 — 2026-11-15
+
+[Download v5.83](https://github.com/werran2/MotionBeats-public/releases/tag/v5.83)
+
+**5.83 / build 583 · Android 9+ · ARM64 · release build**
+
+## 中文
+
+- 修复 5.82 release 包打开即闪退的问题：R8 完整模式移除了 Gson `TypeToken` 所需的泛型元数据，导致旧数据迁移初始化失败。补齐相关保留规则，继续启用代码与资源压缩。
+- 继续使用公开 v1.34 的原签名证书，支持覆盖安装同证书的旧版及 5.82 release 包；升级时无需卸载或清除应用数据。
+- 已在连接的 Android 真机上覆盖安装并通过 15 秒冷启动检查：进程持续运行，主界面保持前台。同一检查在修复前的 5.82 上可复现闪退。
+- 本次是 Android 启动修复，三处版本同步为 5.83/583；没有新增功能，也没有发布 iOS 安装包。
+
+请下载本页的 release APK 或包含同一 APK 的 ZIP（二选一）。升级前建议备份重要数据。若安装的是此前另一签名的 5.82 debug 包，本包仍不能直接覆盖它；请先保留、导出重要数据，不要直接卸载导致本地数据丢失。
+
+此前 v1.34→v5.82 的全部累计变化和里程碑仍保留在 [CHANGELOG](https://github.com/werran2/MotionBeats-public/blob/main/CHANGELOG.md) 中。
+
+## English
+
+- Fixes the immediate startup crash in the 5.82 release build. R8 full mode stripped generic metadata required by Gson `TypeToken`, breaking legacy-data migration initialization. Added the required keep rules while retaining code/resource shrinking.
+- Retains the original public v1.34 signing certificate. Compatible older installations and the 5.82 release build can be updated in place without uninstalling or clearing app data.
+- Verified by an in-place update and a 15-second cold-start check on an Android device: the process stayed alive and the main activity remained in the foreground. The same check reproduced the crash before the fix.
+- Android startup hotfix only; Android/iOS/Xcode version metadata is synchronized to 5.83/583. No new features or iOS binary are included.
+
+Download either the release APK or the ZIP containing that same APK. Back up important data before upgrading. The earlier 5.82 debug APK used a different certificate and cannot be updated in place with this build; preserve/export important data before considering uninstalling it.
+
+See [CHANGELOG](https://github.com/werran2/MotionBeats-public/blob/main/CHANGELOG.md) for the full cumulative v1.34→v5.82 changes. This release build continues using the legacy beta/debug signing identity for upgrade continuity; it does not introduce a new production signing identity. Broader feature and iOS device testing were not performed for this hotfix.
+
+## SHA-256
+
+```text
+6377e94a9e5f5475e846450f3f716fd82db62e3afb7479248afade1d5e3c9582  MotionBeats-5.83-583-android-arm64-release.apk
+827816ea6df2c905d1b82215d8272371a26e6524148cbebc67210c463df12178  MotionBeats-5.83-583-android-arm64-release.zip
+```
+
+
 ## 5.82 — 2026-11-15
+
+> **Known startup crash / 已知启动闪退：** 5.82 release 的启动问题已由 [v5.83](https://github.com/werran2/MotionBeats-public/releases/tag/v5.83) 修复，请升级到 5.83。The 5.82 release startup crash is fixed in v5.83; please upgrade.
+
+
 
 [Download v5.82](https://github.com/werran2/MotionBeats-public/releases/tag/v5.82)
 
