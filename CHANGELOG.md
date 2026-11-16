@@ -2,7 +2,68 @@
 
 All notable public beta changes for MotionBeats will be recorded here.
 
+## 5.94 — 2026-11-16
+
+[Download v5.94](https://github.com/werran2/MotionBeats-public/releases/tag/v5.94)
+
+**建议所有 Android 用户升级。** 本版集中补齐优化 release 包的反射与 JNI 保留规则，包含启动及设置修复，并修复同一类风险在其它入口的遗漏。R8 代码优化与资源裁剪继续启用。
+
+**All Android users should update.** This release fixes reflection and JNI compatibility across the optimized release build, including startup and Settings, while keeping code and resource shrinking enabled.
+
+## 本次修复 / Fixes
+
+- 保留 Gson 泛型信息及反射使用的 DTO、字段和构造器，覆盖登录、上传、任务状态、对话响应、SSE、错误信息和举报响应。
+- 修复 MOSS 模型运行元数据及安装标记、Pack 替换恢复记录、角色/消息旧数据迁移和 STT 诊断 JSON 被裁剪或改名的问题。
+- 保留少用枚举值，避免旧消息和语音路由被读成 null。
+- 补齐 Sherpa 本地识别、VAD 和声纹 JNI 的配置字段、类型及结果构造器保护。
+- Preserve Gson generic metadata and reflective DTO contracts for authentication, uploads, jobs, dialogue, streaming, errors and report responses.
+- Preserve model metadata, installation/recovery records, legacy character/message migration, diagnostic JSON and enum values.
+- Preserve Sherpa JNI configuration and result contracts used by local speech recognition, VAD and speaker embeddings.
+
+## 为什么旧版本没有暴露 / Why this surfaced
+
+此前公开 v1.34 和最初的 5.82 附件是未混淆的 debug 构建。改为优化后的 release 构建后，原有反射/JNI 规则遗漏才暴露。5.83 修复了启动，但仍存在设置及其它反射入口问题。5.84 仅用于内部验证，未正式发布；本版集中修复并扩大实际 APK 回归。
+
+The archived v1.34 and initial 5.82 packages were debug builds. Switching distribution to an optimized release build exposed missing reflection/JNI rules. Version 5.83 fixed startup but still had other compatibility gaps. Version 5.84 remained an internal draft; this release addresses the related boundaries together.
+
+## 验证范围 / Validation
+
+- 本机编译优化 release APK，独立探针在安卓真机加载最终 APK：67 个 JSON 用例、5 个真实 TypeToken 解析、20 个 JNI 类型（79 个字段、3 个构造器）全部通过。
+- 同一探针在旧包上能复现失败；测试代码不参与 App 的 R8 构建。
+- 真机覆盖安装保留现有应用数据；运动、角色列表、生成、设置四个主页面实际点击并检查存活。
+- 最终 APK 的版本、ARM64 原生库、签名、对齐和 ZIP 内容一致性已校验。
+- The optimized APK passed 67 JSON cases, five production TypeToken parsing cases, and JNI contracts for 20 types, 79 fields and three constructors on a physical Android device.
+- The same probe reproduces failures in the previous package without adding test keep rules to the app.
+- In-place installation, the four main navigation pages, signing, version and archive integrity were checked.
+
+这些检查不等同于全功能验收。未完成所有机型、完整云端生成、本地模型推理效果、长时间音频或 iOS 运行测试；JNI 合同检查不代表完整语音识别效果测试。
+
+This is not a full end-to-end certification across devices, cloud generation, local inference quality, long-running audio or iOS. JNI contract checks do not constitute a complete speech-recognition test.
+
+## 下载与升级 / Download and upgrade
+
+- Android 9+，ARM64；`versionName 5.94` / `versionCode 594`。
+- [直接安装 APK / Install APK](https://github.com/werran2/MotionBeats-public/releases/download/v5.94/MotionBeats-5.94-594-android-arm64-release.apk)
+- [ZIP 附件 / ZIP archive](https://github.com/werran2/MotionBeats-public/releases/download/v5.94/MotionBeats-5.94-594-android-arm64-release.zip)
+- 使用与旧公开 v1.34 一致的 beta 签名身份，兼容覆盖安装 1.34、重新签名的 5.82 release 和 5.83。它是 release 构建，沿用历史 beta/debug 证书，并未更换为新的生产证书。
+- 最早的 5.82 debug 附件曾使用另一把签名，不能直接覆盖；若仍安装该附件，请先备份可导出的内容，再卸载旧包并安装。卸载会清除该应用的本地数据。
+- Uses the legacy beta signing identity for compatible in-place updates. The earliest differently signed 5.82 debug attachment requires backup and reinstallation; uninstalling clears local app data.
+
+v1.34 → v5.82 的累计功能更新摘要继续保留在 [CHANGELOG](https://github.com/werran2/MotionBeats-public/blob/main/CHANGELOG.md)。本版不重复把这些历史功能当作新增功能。
+
+## SHA-256
+
+```text
+25225aff9c0eca8a28b1fa602a487156b0226be951e2f1a74db95740ae6cf6e7  MotionBeats-5.94-594-android-arm64-release.apk
+b42c01b589662b4a3de6599ac89afa0e5739a151a3206ed8aebb088363237a21  MotionBeats-5.94-594-android-arm64-release.zip
+```
+
+
 ## 5.83 — 2026-11-15
+
+> **Release compatibility issue / 发布包兼容性问题：** 此版本存在已确认的压缩兼容性问题，请升级至 [v5.94](https://github.com/werran2/MotionBeats-public/releases/tag/v5.94)。Please update to v5.94 for the combined release compatibility fixes.
+
+
 
 [Download v5.83](https://github.com/werran2/MotionBeats-public/releases/tag/v5.83)
 
